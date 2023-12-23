@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SVGComponent from "./SVGComponent";
 import data from "../data";
 import image from "../assets/Image.svg";
 import { Children, useState } from "react";
 const SideNavbar = () => {
-  const [active, setActive] = useState<number | null>(null);
+  const { pathname } = useLocation();
+  const [active, setActive] = useState<number | null>(
+    data.navbar.findIndex((item) => pathname === item.href)
+  );
   return (
     <nav className=" md:w-1/5 h-256 border-end  border border-[#FFFFF] w-20 ">
       <div className=" hidden md:block">

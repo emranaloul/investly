@@ -54,7 +54,7 @@ const projectsTypes = {
 
 const data: DataType = {
   navbar: [
-    { title: "dashboard", icon: "dashboard", href: "/#" },
+    { title: "dashboard", icon: "dashboard", href: "/" },
     {
       title: "available units",
       icon: "available-units",
@@ -63,7 +63,7 @@ const data: DataType = {
     {
       title: "invoices",
       icon: "invoices",
-      href: "/#",
+      href: "/",
     },
     {
       title: "projects",
@@ -73,17 +73,17 @@ const data: DataType = {
     {
       title: "social media",
       icon: "social-media",
-      href: "/#",
+      href: "/",
     },
     {
       title: "integrations",
       icon: "integrations",
-      href: "/#",
+      href: "/",
     },
     {
       title: "documentation",
       icon: "documentation",
-      href: "/#",
+      href: "/",
     },
   ],
   favorites: [
