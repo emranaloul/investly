@@ -3,16 +3,18 @@ import ChartCard from "../components/ChartCard";
 import SVGComponent from "../components/SVGComponent";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import staticData from "../data";
 import FavoriteCard from "../components/FavoriteCard";
+import IconButton from "../components/IconButton";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const Projects = () => {
+  const favorites =  useSelector((state: RootState) => state.favorite )
   const data = {
-    // labels: ['Red', 'Blue'],
     datasets: [
       {
-        // label: '# of Votes',
         data: [25, 75],
         backgroundColor: ["#E6FBD9", "#44C13C"],
         borderColor: ["#E6FBD9", "#44C13C"],
@@ -21,10 +23,8 @@ export const Projects = () => {
     ],
   };
   const data2 = {
-    // labels: ['Red', 'Blue'],
     datasets: [
       {
-        // label: '# of Votes',
         data: [25, 75],
         backgroundColor: ["#E6FBD9", "#4040F2"],
         borderColor: ["#E6FBD9", "#4040F2"],
@@ -33,10 +33,8 @@ export const Projects = () => {
     ],
   };
   const data3 = {
-    // labels: ['Red', 'Blue'],
     datasets: [
       {
-        // label: '# of Votes',
         data: [50, 50],
         backgroundColor: ["#E6FBD9", "#FF513A"].reverse(),
         borderColor: ["#E6FBD9", "#FF513A"].reverse(),
@@ -44,20 +42,21 @@ export const Projects = () => {
       },
     ],
   };
-
+  const options = {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 1.5,
+    cutout: 45,
+  };
   return (
     <div className=" flex flex-col">
       <div className=" w-full flex justify-between h-[86px] items-center px-9">
         <h1 className=" text-gray-800 font-semibold  text-[28px] w-fit">
           Your dashboard
         </h1>
-        <div>
-          <button className=" border-gray-200  rounded-[32px] border p-3">
-            <SVGComponent id="bell" className="w-4 h-4" />
-          </button>
-          <button className="border-gray-200  rounded-[32px] border p-3 ml-3">
-            <SVGComponent id="search" className="w-4 h-4" />
-          </button>
+        <div className=" flex gap-2">
+          <IconButton icon="bell" />
+          <IconButton icon="search" />
         </div>
       </div>
       <div className=" w-full flex justify-center gap-6 flex-wrap items-center">
@@ -66,12 +65,7 @@ export const Projects = () => {
           count={"2,456"}
           chart={
             <Doughnut
-              options={{
-                responsive: true,
-                maintainAspectRatio: true,
-                aspectRatio: 1.5,
-                cutout: 45,
-              }}
+              options={options}
               data={data}
             />
           }
@@ -82,12 +76,7 @@ export const Projects = () => {
           count={"221"}
           chart={
             <Doughnut
-              options={{
-                responsive: true,
-                maintainAspectRatio: true,
-                aspectRatio: 1.5,
-                cutout: 45,
-              }}
+              options={options}
               data={data2}
             />
           }
@@ -98,12 +87,7 @@ export const Projects = () => {
           count={"1,425"}
           chart={
             <Doughnut
-              options={{
-                responsive: true,
-                maintainAspectRatio: true,
-                aspectRatio: 1.5,
-                cutout: 45,
-              }}
+              options={options}
               data={data3}
             />
           }
@@ -128,7 +112,7 @@ export const Projects = () => {
       </div>
       <div className=" flex flex-wrap justify-center gap-6 bg-[#FFFFFF]">
         {Children.toArray(
-          staticData.favorites.map((item) => <FavoriteCard {...item} />)
+          favorites.map((item) => <FavoriteCard {...item} />)
         )}
       </div>
     </div>

@@ -2,9 +2,12 @@ import { Children } from "react";
 import SVGComponent from "../components/SVGComponent";
 import Button from "../components/Button";
 import SearchInput from "../components/SearchInput";
-import data from "../data";
 import AvatarGroup from "../components/AvatarGroup";
+import IconButton from "../components/IconButton";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 const AvailableUnits = () => {
+  const projects = useSelector((state: RootState) => state.projects);
   const columns = [
     {
       header: "Project name",
@@ -17,7 +20,7 @@ const AvailableUnits = () => {
           </div>
         </div>
       ),
-      bodyElement: (rowData: (typeof data.projects)[0]) => (
+      bodyElement: (rowData: (typeof projects)[0]) => (
         <div className=" flex gap-2">
           <SVGComponent id="folder-shared" className=" w-4 h-4" />
           <span className=" text-sm font-normal text-[#000000]">
@@ -29,7 +32,7 @@ const AvailableUnits = () => {
     {
       header: "Project Status",
       label: "status",
-      bodyElement: (rowData: (typeof data.projects)[0]) => (
+      bodyElement: (rowData: (typeof projects)[0]) => (
         <span
           className={`${rowData.status.color} px-[10px] pb-[7px] pt-[5px] text-blue-50 rounded-xl text-[12px] font-normal `}
         >
@@ -40,7 +43,7 @@ const AvailableUnits = () => {
     {
       header: "Brand",
       label: "brand",
-      bodyElement: (rowData: (typeof data.projects)[0]) => (
+      bodyElement: (rowData: (typeof projects)[0]) => (
         <div className=" flex gap-2">
           <div className=" flex bg-gray-700 text-center w-8 h-8 justify-center items-center rounded-[80px]">
             <SVGComponent id={rowData.brand.logo} className="w-6 h-6" />
@@ -52,14 +55,14 @@ const AvailableUnits = () => {
     {
       header: "Contributors",
       label: "contributors",
-      bodyElement: (rowData: (typeof data.projects)[0]) => (
+      bodyElement: (rowData: (typeof projects)[0]) => (
         <AvatarGroup avatars={rowData.contributors} />
       ),
     },
     {
       header: "Project type",
       label: "type",
-      bodyElement: (rowData: (typeof data.projects)[0]) => (
+      bodyElement: (rowData: (typeof projects)[0]) => (
         <span
           className={` ${rowData.type.bgColor} ${rowData.type.textColor} px-[10px] pb-[7px] pt-[5px] rounded-xl text-[12px] font-normal`}
         >
@@ -70,7 +73,7 @@ const AvailableUnits = () => {
     {
       header: "Due date",
       label: "dueDate",
-      bodyElement: (rowData: (typeof data.projects)[0]) => (
+      bodyElement: (rowData: (typeof projects)[0]) => (
         <div className=" flex gap-2 ">
           <SVGComponent id="calendar" className=" w-4 h-4" />
           <span className=" text-sm">{rowData.dueDate}</span>
@@ -80,9 +83,7 @@ const AvailableUnits = () => {
     {
       header: "Actions",
       label: "action",
-      bodyElement: () => (
-        <SVGComponent id="actions" className=" w-6 h-6" />
-      ),
+      bodyElement: () => <SVGComponent id="actions" className=" w-6 h-6" />,
     },
   ];
   return (
@@ -101,12 +102,8 @@ const AvailableUnits = () => {
               <SVGComponent id="plus" className=" w-4 h-4" />
             </div>
           </button>
-          <button className=" border-gray-200  rounded-[32px] border p-3">
-            <SVGComponent id="bell" className="w-4 h-4" />
-          </button>
-          <button className="border-gray-200  rounded-[32px] border p-3">
-            <SVGComponent id="search" className="w-4 h-4" />
-          </button>
+          <IconButton icon="bell" />
+          <IconButton icon="search" />
         </div>
       </div>
       <div className=" flex px-9 justify-between h-[72px]">
@@ -139,7 +136,7 @@ const AvailableUnits = () => {
           </thead>
           <tbody>
             {Children.toArray(
-              data.projects.map((project) => (
+              projects.map((project) => (
                 <tr className=" h-[60]">
                   <td className=" flex h-[60px]  m-auto">
                     <input type="checkbox" className=" m-auto" />
