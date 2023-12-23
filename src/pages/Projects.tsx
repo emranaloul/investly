@@ -64,17 +64,50 @@ export const Projects = () => {
         <ChartCard
           title="Todays sales"
           count={"2,456"}
-          chart={<Doughnut data={data} />}
+          chart={
+            <Doughnut
+              options={{
+                responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: 1.5,
+                cutout: 45,
+              }}
+              data={data}
+            />
+          }
+          chartIcon="trending-up"
         />
         <ChartCard
           title="New Products"
           count={"221"}
-          chart={<Doughnut data={data2} />}
+          chart={
+            <Doughnut
+              options={{
+                responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: 1.5,
+                cutout: 45,
+              }}
+              data={data2}
+            />
+          }
+          chartIcon="trending-flat"
         />
         <ChartCard
           title="Inventory"
           count={"1,425"}
-          chart={<Doughnut data={data3} />}
+          chart={
+            <Doughnut
+              options={{
+                responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: 1.5,
+                cutout: 45,
+              }}
+              data={data3}
+            />
+          }
+          chartIcon="trending-down"
         />
       </div>
       <div className=" w-full flex justify-between h-[86px] items-center px-9">

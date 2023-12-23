@@ -6,16 +6,16 @@ import { Children, useState } from "react";
 const SideNavbar = () => {
   const [active, setActive] = useState<number | null>(null);
   return (
-    <nav className=" w-1/5 h-256 border-end  border border-[#FFFFF] ">
-      <div>
+    <nav className=" md:w-1/5 h-256 border-end  border border-[#FFFFF] w-20 ">
+      <div className=" hidden md:block">
         <p className=" flex justify-center  text-center text-[28px]  h-[84px] my-auto font-[900]">
           <span className=" my-auto text-[#0D0D54]">Investly</span>
           <span className=" my-auto text-[#4040F2]">.</span>
         </p>
       </div>
       <hr className="h-4 opacity-0" />
-      <div className=" h-[701px]">
-        <ul>
+      <div className=" h-[701px] overflow-hidden ">
+        <ul className="">
           {Children.toArray(
             data.navbar.map((item, i) => (
               <li
@@ -38,7 +38,7 @@ const SideNavbar = () => {
                       active !== i ? "text-gray-400" : "text-[#4040F2]"
                     }`}
                   />
-                  <span>{item.title}</span>
+                  <span className=" hidden md:block">{item.title}</span>
                 </Link>
               </li>
             ))
@@ -77,11 +77,10 @@ const SideNavbar = () => {
       <div className=" w-full h-24 justify-center items-center flex py-6 px-7">
         <div className=" flex ">
           <img src={image} />
-          <p className="max-w-fit mx-[15px] line-clamp-none ">
-            <span className=" text-[16px] text-gray-600">Louise Thompson</span>
-            <br />
+          <div className="max-w-fit mx-[15px] line-clamp-none flex flex-col ">
+            <span className=" text-[16px] text-gray-600 ">Louise Thompson</span>
             <span className="  text-[12px] text-gray-600">Enterprise plan</span>
-          </p>
+          </div>
         </div>
       </div>
     </nav>
