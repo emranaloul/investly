@@ -1,4 +1,3 @@
-import React from "react";
 import SVGComponent from "./SVGComponent";
 
 const SearchInput = (props: { placeholder?: string; id?: string }) => {
